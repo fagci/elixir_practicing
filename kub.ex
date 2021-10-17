@@ -5,7 +5,7 @@
 # where digits is different
 
 102..987
-|> Enum.map(fn kub -> {Enum.uniq(Integer.digits(kub)), kub} end)
+|> Enum.map(&({Enum.uniq(Integer.digits(&1)), &1}))
 |> Enum.filter(fn {v, kub} ->
   length(v) == 3 and Integer.pow(Enum.sum(v), 3) == kub
 end)
