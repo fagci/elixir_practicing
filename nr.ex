@@ -43,5 +43,5 @@ defmodule IPGen do
 end
 
 IPGen.infinite()
-|> Task.async_stream(check, max_concurrency: 1024, ordered: false)
+|> Task.async_stream(check, max_concurrency: 2048, ordered: false)
 |> Enum.to_list()

@@ -4,15 +4,12 @@
 # of equation (K+U+B)^3=KUB
 # where digits is different
 
-for v <- 102..987 do
-  d = Enum.uniq(Integer.digits(v))
-
-  if length(d) == 3 do
-    s = Enum.sum(d)
-
-    if Integer.pow(s, 3) == v do
-      sum = Enum.join(d, "+")
-      IO.puts("(#{sum})^3=#{v}")
-    end
-  end
-end
+102..987
+|> Enum.map(fn kub -> {Enum.uniq(Integer.digits(kub)), kub} end)
+|> Enum.filter(fn {v, kub} ->
+  length(v) == 3 and Integer.pow(Enum.sum(v), 3) == kub
+end)
+|> Enum.map(fn {[k, u, b], kub} ->
+  "(#{k}+#{u}+#{b})^3=#{kub}"
+end)
+|> IO.puts()
