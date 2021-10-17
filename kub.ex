@@ -4,8 +4,11 @@
 # of equation (K+U+B)^3=KUB
 # where digits is different
 
+import Enum, only: [map: 2, filter: 2, each: 2, sum: 1, uniq: 1]
+import Integer, only: [digits: 1, pow: 2]
+
 check = fn {v, kub} ->
-  length(v) == 3 and Integer.pow(Enum.sum(v), 3) == kub
+  length(v) == 3 and pow(sum(v), 3) == kub
 end
 
 format = fn {[k, u, b], kub} ->
@@ -13,7 +16,7 @@ format = fn {[k, u, b], kub} ->
 end
 
 102..987
-|> Enum.map(&{Enum.uniq(Integer.digits(&1)), &1})
-|> Enum.filter(check)
-|> Enum.map(format)
-|> Enum.each(&IO.puts/1)
+|> map(&{uniq(digits(&1)), &1})
+|> filter(check)
+|> map(format)
+|> each(&IO.puts/1)
