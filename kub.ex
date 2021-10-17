@@ -12,4 +12,4 @@ end)
 |> Enum.map(fn {[k, u, b], kub} ->
   "(#{k}+#{u}+#{b})^3=#{kub}"
 end)
-|> IO.puts()
+|> Enum.map(&IO.puts/1)
