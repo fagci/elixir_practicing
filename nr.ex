@@ -1,10 +1,10 @@
 #! /usr/bin/env elixir
 
 check = fn ip ->
-  case :gen_tcp.connect(ip, 80, [], 2000) do
+  case :gen_tcp.connect(ip, 80, [], 1000) do
     {:ok, s} ->
       :gen_tcp.close(s)
-      {a,b,c,d} = ip
+      {a, b, c, d} = ip
       IO.puts("#{a}.#{b}.#{c}.#{d}")
       ip
 
