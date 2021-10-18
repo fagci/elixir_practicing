@@ -1,5 +1,5 @@
 #! /usr/bin/env elixir
-ip = String.to_charlist("192.168.0.250")
+ip = ~C"192.168.0.250"
 ports = 1..1024
 
 check = fn port ->
