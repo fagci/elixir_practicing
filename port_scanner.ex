@@ -11,6 +11,7 @@ end
 
 ports
 |> Task.async_stream(check, max_concurrency: 256)
-|> Enum.map(fn {_, port} -> port end)
-|> Enum.filter(&is_number/1)
-|> Enum.each(&IO.puts/1)
+|> Stream.map(&elem(&1, 1))
+|> Stream.filter(&is_number/1)
+|> Stream.each(&IO.puts/1)
+|> Stream.run()
